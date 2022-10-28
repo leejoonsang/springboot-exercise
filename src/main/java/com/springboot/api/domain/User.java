@@ -1,4 +1,4 @@
-package com.springboot.api.domain.user;
+package com.springboot.api.domain;
 
 import lombok.Setter;
 
