@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.util.Map;
 
 @Component
 public class UserDao {
@@ -22,5 +23,4 @@ public class UserDao {
     public int deleteAll() {
         return this.jdbcTemplate.update("delete from user");
     }
-
 }
