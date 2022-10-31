@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -27,4 +29,7 @@ public class Hospital {
     private int totalNumberOfBeds;
     private float totalAreaSize;
 
+    public void setLicenseDate(LocalDateTime of) {
+
+    }
 }
