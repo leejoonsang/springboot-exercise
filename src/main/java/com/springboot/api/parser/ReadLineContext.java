@@ -1,5 +1,7 @@
 package com.springboot.api.parser;
 
+import com.springboot.api.domain.Hospital;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,6 +24,7 @@ public class ReadLineContext<T> {
         while ((str = reader.readLine()) != null) {
             try{
                 result.add(parser.parse(str));
+                System.out.println("id2 : " + ((Hospital) parser.parse(str)).getId());
             }catch (Exception e){
                 System.out.printf("파싱 중에 문제가 생겨 해당 라인은 넘어갑니다. 파일 내용:%s\n", str.substring(0,20));
             }
