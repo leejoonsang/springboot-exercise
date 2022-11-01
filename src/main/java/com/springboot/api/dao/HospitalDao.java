@@ -2,7 +2,11 @@ package com.springboot.api.dao;
 
 import com.springboot.api.domain.Hospital;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Component
 public class HospitalDao {
@@ -12,6 +16,16 @@ public class HospitalDao {
     public HospitalDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    RowMapper<Hospital> rowMapper = ((rs, rowNum) -> {
+        Hospital hospital = new Hospital();
+        hospital.setId(rs.getInt("id"));
+        hospital.setOpenServiceName(rs.getString("open_service_name"));
+        hospital.setHospitalName(rs.getString("hospital_name"));
+        hospital.setLicenseDate(rs.getTimestamp("license_date").toLocalDateTime());
+        hospital.setTotalAreaSize(rs.getFloat("total_area_size"));
+        return hospital;
+    });
 
     public void add(Hospital hospital) {
         String sql = "INSERT INTO `bes2-db`.`nation_hospotal`" +
@@ -27,13 +41,13 @@ public class HospitalDao {
                 hospital.getHealthcareProviderCount(), hospital.getPatientRoomCount(), hospital.getTotalNumberOfBeds(), hospital.getTotalAreaSize());
     }
 
+    public Hospital findById(int id) {
+        return this.jdbcTemplate.queryForObject("SELECT * from nation_hospital where id = ?", rowMapper, id);
+    }
+
     public int getCount() {
         String sql = "SELECT count(id) from nation_hospital;";
         return this.jdbcTemplate.queryForObject(sql, Integer.class);
-    }
-
-    public int deleteById(int id) {
-        return this.jdbcTemplate.update("delete from nation_hospital where id = ?", id);
     }
 
     public int deleteAll() {
