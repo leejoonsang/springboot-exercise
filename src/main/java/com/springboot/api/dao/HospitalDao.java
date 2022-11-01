@@ -24,6 +24,8 @@ public class HospitalDao {
         hospital.setHospitalName(rs.getString("hospital_name"));
         hospital.setLicenseDate(rs.getTimestamp("license_date").toLocalDateTime());
         hospital.setTotalAreaSize(rs.getFloat("total_area_size"));
+
+
         return hospital;
     });
 
