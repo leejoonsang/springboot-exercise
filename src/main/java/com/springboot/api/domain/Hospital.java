@@ -12,11 +12,12 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Hospital {
+
     private int id;
     private String openServiceName;
     private int openLocalGovernmentCode;
     private String managementNumber;
-    private String licenseDate;
+    private LocalDateTime licenseDate;
     private int businessStatus;
     private int businessStatusCode;
     private String phone;
@@ -29,7 +30,4 @@ public class Hospital {
     private int totalNumberOfBeds;
     private float totalAreaSize;
 
-    public void setLicenseDate(LocalDateTime of) {
-
-    }
 }
